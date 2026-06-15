@@ -899,18 +899,31 @@ body.gate-open{overflow:hidden;}
 .mlk:hover{border-color:var(--fg);color:#fff;}
 
 /* ── BOTTOM ─────────────────────────────────────────────────────── */
-.bt{border-top:1px solid var(--ln);display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(135deg,#aeb8ad,#cad2c7);}
-#bio{position:relative;padding:4rem 2.4rem;border-right:1px solid var(--ln);overflow:visible;isolation:isolate;}
-.bl{font-family:var(--font-ui);font-size:.72rem;letter-spacing:.18em;text-transform:lowercase;color:var(--mu);margin-bottom:1.8rem;}
-#bio p{position:relative;z-index:1;font-family:var(--font-ui);font-size:.95rem;line-height:1.88;color:rgba(23,19,15,.66);margin-bottom:1rem;}
-#bio em{font-family:var(--font-ui);font-style:italic;color:var(--fg);font-size:1rem;}
-#contact{padding:4rem 2.4rem;display:flex;flex-direction:column;justify-content:space-between;}
-.cl2{font-family:var(--font-ui);font-size:.72rem;letter-spacing:.18em;text-transform:lowercase;color:var(--mu);margin-bottom:1.8rem;}
-.ch{font-family:var(--font-display);font-style:normal;font-weight:400;font-size:clamp(2.4rem,5vw,4.2rem);line-height:.92;margin-bottom:2rem;color:var(--fg);}
-.ce{font-family:var(--font-ui);font-size:.82rem;letter-spacing:.04em;color:var(--fg);text-decoration:none;border-bottom:1px solid rgba(216,74,58,.7);padding-bottom:.2rem;transition:border-color .2s,color .2s;}
-.ce:hover{border-color:var(--fg);color:#fff;}
-footer{border-top:1px solid var(--ln);padding:1.3rem 2.4rem;display:flex;justify-content:space-between;align-items:center;}
-footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;color:rgba(23,19,15,.40);}
+.bt{
+  position:relative;z-index:3;border-top:1px solid rgba(237,235,226,.12);
+  display:grid;grid-template-columns:1fr 1fr;background:#020202;color:rgba(247,244,235,.82);
+  overflow:hidden;isolation:isolate;padding-bottom:7.2rem;
+}
+.bt::before{
+  content:'';position:absolute;inset:-20% -8% 0;z-index:0;pointer-events:none;opacity:.76;
+  background:
+    radial-gradient(ellipse 54% 42% at 22% 10%,rgba(237,235,226,.075),transparent 70%),
+    radial-gradient(ellipse 46% 54% at 82% 78%,rgba(67,95,153,.07),transparent 74%);
+}
+#bio{position:relative;z-index:1;padding:4.6rem 2.4rem 4.2rem;border-right:1px solid rgba(237,235,226,.13);overflow:visible;isolation:isolate;}
+.bl{font-family:var(--font-ui);font-size:.72rem;letter-spacing:.18em;text-transform:lowercase;color:rgba(247,244,235,.50);margin-bottom:1.8rem;}
+#bio p{position:relative;z-index:1;font-family:var(--font-ui);font-size:.95rem;line-height:1.88;color:rgba(247,244,235,.68);margin-bottom:1rem;}
+#bio em{font-family:var(--font-ui);font-style:italic;color:rgba(255,253,246,.92);font-size:1rem;}
+#contact{position:relative;z-index:1;padding:4.6rem 2.4rem 4.2rem;display:flex;align-items:flex-end;justify-content:flex-start;}
+.contact-links{display:flex;gap:.85rem;align-items:center;}
+.contact-link{
+  width:44px;height:44px;border:1px solid rgba(237,235,226,.18);display:grid;place-items:center;
+  color:rgba(247,244,235,.74);text-decoration:none;transition:color .2s,border-color .2s,transform .2s,background .2s;
+}
+.contact-link:hover{color:rgba(255,253,246,.96);border-color:rgba(247,244,235,.42);background:rgba(237,235,226,.045);transform:translateY(-2px);}
+.contact-link svg{width:20px;height:20px;display:block;}
+footer{position:relative;z-index:3;border-top:1px solid rgba(237,235,226,.12);background:#020202;padding:1.3rem 2.4rem 1.6rem;display:flex;justify-content:space-between;align-items:center;}
+footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;color:rgba(247,244,235,.38);}
 
 @media(max-width:760px){
   .intro-gate{padding:1.2rem 1.2rem 1.5rem;}
@@ -950,8 +963,10 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   .cve,.cv-shine{display:none;}
   .cvl{opacity:1!important;}
   .cd,.ss-hint{display:none;}
-  .bt{grid-template-columns:1fr;}
-  #bio{border-right:none;border-bottom:1px solid var(--ln);}
+  .bt{grid-template-columns:1fr;padding-bottom:7rem;}
+  #bio{border-right:none;border-bottom:1px solid rgba(237,235,226,.13);padding:3.2rem 1.4rem;}
+  #contact{padding:2.2rem 1.4rem 4.8rem;align-items:flex-start;}
+  footer{padding:1rem 1.4rem 1.35rem;gap:.8rem;flex-wrap:wrap;}
   .mi2{grid-template-columns:1fr;padding:4rem 1.4rem;gap:2.5rem;}
   .ma{position:static;}
   .top-nav{padding:1.2rem 1.5rem;}
@@ -1027,7 +1042,7 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 
 <div class="contact-tab" aria-label="contact">
   <span>contact</span>
-    <a class="contact-icon" href="https://www.instagram.com/theoherrerias/" target="_blank" rel="noopener" aria-label="instagram">
+    <a class="contact-icon" href="https://www.instagram.com/1000chevauxvapeur/" target="_blank" rel="noopener" aria-label="instagram">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="3" y="3" width="18" height="18" rx="5"></rect>
       <circle cx="12" cy="12" r="4"></circle>
@@ -1242,14 +1257,26 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
     <p>Il signe la composition, la production et les <em>arrangements orchestraux</em> des albums Terrenoire — dont <em>protégé.e</em> (2025), avec l'Orchestre du Nouveau Monde à la Maison de la Radio. Victoire de la Musique 2022.</p>
     <p>En parallèle, il réalise des titres pour Catastrophe, Bernard Lavilliers, Enchantée Julia, November Ultra, Alexandre Thivant — et produit des <em>documentaires audio</em> dont <em>Le monde paysan, mon père et moi</em> (2025, T T T Télérama).</p>
   </section>
-  <section id="contact">
-    <p class="cl2">contact</p>
-    <h2 class="ch">Un projet ?<br>Écrivez-moi.</h2>
-    <a class="ce" href="mailto:herreriastheo@gmail.com">herreriastheo@gmail.com</a>
+  <section id="contact" aria-label="contact">
+    <div class="contact-links">
+      <a class="contact-link" href="https://www.instagram.com/1000chevauxvapeur/" target="_blank" rel="noopener" aria-label="instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.4" cy="6.6" r=".8" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+      <a class="contact-link" href="mailto:herreriastheo@gmail.com" aria-label="mail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+          <path d="m4 7 8 6 8-6"></path>
+        </svg>
+      </a>
+    </div>
   </section>
 </div>
 <footer>
-  <span>© 2026 Théo Herrerias</span>
+  <span>© 2026 théo herrerias</span>
   <span>paris</span>
 </footer>
 
