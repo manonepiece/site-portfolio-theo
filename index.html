@@ -513,6 +513,10 @@ body.gate-open{overflow:hidden;}
 
 /* ── SPIRALS ─────────────────────────────────────────────────────── */
 .ss{position:relative;width:100%;overflow:hidden;cursor:none;}
+#ms,#ps,.work-index,.expo-shell,.bt{
+  content-visibility:auto;
+  contain-intrinsic-size:720px;
+}
 #ms,#ps{
   background:
     radial-gradient(circle at 13% 28%,rgba(184,68,50,.13),transparent 19%),
@@ -547,14 +551,14 @@ body.gate-open{overflow:hidden;}
 
 /* ── 3D COVERS ───────────────────────────────────────────────────── */
 .cv{position:absolute;left:50%;top:50%;width:150px;cursor:pointer;will-change:transform,opacity;}
-.cv-sh{width:150px;height:150px;}
-.cv-tilt{width:100%;height:100%;}
+.cv-sh{width:150px;height:150px;box-shadow:0 20px 38px rgba(0,0,0,.34);}
+.cv-tilt{width:100%;height:100%;will-change:transform;}
 .cv3d{width:100%;height:100%;transform-style:preserve-3d;position:relative;}
 .cvf{position:absolute;inset:0;overflow:hidden;border:1px solid rgba(23,19,15,.18);background:#19120f;}
 .cvf img{width:100%;height:100%;object-fit:cover;display:block;}
 .ph{width:100%;height:100%;background:linear-gradient(135deg,#aeb8ad,#bdc7bd);}
 .cvf::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(to right,rgba(0,0,0,.24) 0%,transparent 22%,transparent 78%,rgba(0,0,0,.22) 100%),linear-gradient(to bottom,rgba(216,74,58,.10) 0%,transparent 22%,transparent 78%,rgba(183,239,117,.07) 100%);}
-.cv-shine{position:absolute;inset:0;pointer-events:none;z-index:2;}
+.cv-shine{position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse 80% 70% at 44% 38%,rgba(255,255,255,.08),transparent 55%);}
 .cve{position:absolute;pointer-events:none;}
 .cve-r{right:0;top:0;width:10px;height:100%;transform-origin:left center;transform:rotateY(90deg);background:linear-gradient(to right,#5d5144,#2a211b);}
 .cve-l{left:0;top:0;width:10px;height:100%;transform-origin:right center;transform:rotateY(-90deg);background:linear-gradient(to left,#5d5144,#2a211b);}
@@ -573,51 +577,51 @@ body.gate-open{overflow:hidden;}
     linear-gradient(to bottom,rgba(189,199,189,.52) 0%,rgba(189,199,189,.27) 24%,rgba(237,235,226,.08) 58%,rgba(237,235,226,0) 100%);
 }
 .work-index.is-timeline{
-  padding:2.65rem 2.4rem 5rem;
-  display:grid;justify-items:center;gap:1.55rem;
+  padding:3.4rem 2.4rem 5.8rem;
+  display:grid;justify-items:center;gap:2.05rem;
   background:
     linear-gradient(to bottom,rgba(189,199,189,.46) 0%,rgba(189,199,189,.18) 31%,rgba(237,235,226,.06) 64%,rgba(237,235,226,0) 100%);
 }
 .timeline-readout{
   border:0;background:transparent;padding:0;margin:0;
   appearance:none;-webkit-appearance:none;
-  display:grid;gap:.34rem;text-align:center;cursor:pointer;color:var(--fg);
+  display:grid;gap:.58rem;text-align:center;cursor:pointer;color:var(--fg);
   font-family:var(--font-ui);font-style:normal;text-transform:lowercase;
 }
-.tr-title{font-size:clamp(1.05rem,1.35vw,1.3rem);line-height:1.15;font-weight:400;transition:opacity .22s,color .22s;}
-.tr-meta{display:flex;gap:.72rem;justify-content:center;align-items:center;font-size:.68rem;letter-spacing:.085em;color:rgba(23,19,15,.42);transition:opacity .22s;}
+.tr-title{font-size:clamp(1.38rem,2.15vw,2.05rem);line-height:1.08;font-weight:400;transition:opacity .22s,color .22s;}
+.tr-meta{display:flex;gap:.9rem;justify-content:center;align-items:center;font-size:.82rem;letter-spacing:.075em;color:rgba(23,19,15,.50);transition:opacity .22s;}
 .timeline-readout:hover .tr-title{color:rgba(23,19,15,.82);}
 .timeline-readout:hover .tr-meta{opacity:.78;}
 .timeline-points{
-  width:min(760px,78vw);display:grid;grid-template-columns:repeat(9,1fr);
-  align-items:start;position:relative;padding:.2rem 0 .5rem;
+  width:min(1040px,91vw);display:grid;grid-template-columns:repeat(9,1fr);
+  align-items:start;position:relative;padding:.25rem 0 1rem;
 }
 .timeline-points::before{
-  content:'';position:absolute;left:5.5%;right:5.5%;top:.58rem;height:1px;
-  background:linear-gradient(to right,transparent,rgba(23,19,15,.18),transparent);
+  content:'';position:absolute;left:5.5%;right:5.5%;top:.76rem;height:1px;
+  background:linear-gradient(to right,transparent,rgba(23,19,15,.28),transparent);
 }
 .tl-dot{
-  position:relative;z-index:1;border:0;background:transparent;padding:0 0 2.65rem;
+  position:relative;z-index:1;border:0;background:transparent;padding:0 0 4.05rem;
   appearance:none;-webkit-appearance:none;
-  min-width:0;height:3.55rem;cursor:pointer;font-family:var(--font-ui);color:rgba(23,19,15,.38);
+  min-width:0;height:5.35rem;cursor:pointer;font-family:var(--font-ui);color:rgba(23,19,15,.48);
 }
 .tl-dot::before{
-  content:'';position:absolute;left:50%;top:.38rem;width:5px;height:5px;border-radius:50%;
-  background:rgba(23,19,15,.28);transform:translate(-50%,-50%);
+  content:'';position:absolute;left:50%;top:.54rem;width:7px;height:7px;border-radius:50%;
+  background:rgba(23,19,15,.38);transform:translate(-50%,-50%);
   transition:width .25s,height .25s,background .25s,opacity .25s;
 }
 .tl-dot .tl-year,.tl-dot .tl-artist{
-  position:absolute;top:1.05rem;left:50%;transform:translateX(-50%);
-  font-size:.56rem;letter-spacing:.08em;opacity:.34;white-space:nowrap;
+  position:absolute;top:1.32rem;left:50%;transform:translateX(-50%);
+  font-size:.74rem;letter-spacing:.06em;opacity:.52;white-space:nowrap;
   transition:opacity .22s,color .22s;
 }
 .tl-dot .tl-artist{
-  top:1.88rem;width:5.8rem;white-space:normal;line-height:1.05;
-  font-size:.49rem;letter-spacing:.045em;color:rgba(23,19,15,.32);
+  top:2.38rem;width:7.4rem;white-space:normal;line-height:1.12;
+  font-size:.62rem;letter-spacing:.035em;color:rgba(23,19,15,.44);
 }
-.tl-dot:hover::before,.tl-dot.active::before{width:9px;height:9px;background:rgba(23,19,15,.62);}
-.tl-dot:hover .tl-year,.tl-dot.active .tl-year{opacity:.72;color:rgba(23,19,15,.58);}
-.tl-dot:hover .tl-artist,.tl-dot.active .tl-artist{opacity:.68;color:rgba(23,19,15,.46);}
+.tl-dot:hover::before,.tl-dot.active::before{width:13px;height:13px;background:rgba(23,19,15,.72);}
+.tl-dot:hover .tl-year,.tl-dot.active .tl-year{opacity:.86;color:rgba(23,19,15,.68);}
+.tl-dot:hover .tl-artist,.tl-dot.active .tl-artist{opacity:.82;color:rgba(23,19,15,.58);}
 .timeline-readout:focus-visible,.tl-dot:focus-visible{outline:1px solid rgba(23,19,15,.28);outline-offset:6px;}
 .wi-row{
   position:relative;
@@ -996,13 +1000,16 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   .sec-head{padding:2.15rem 1.5rem 1rem;justify-content:center;}
   .sh-title{text-align:center;font-size:.92rem;}
   .work-index{padding:2rem 1.2rem 2.4rem;}
-  .work-index.is-timeline{padding:1.9rem 1.2rem 2.7rem;gap:1.25rem;}
-  .tr-title{font-size:.98rem;}
-  .tr-meta{font-size:.62rem;gap:.5rem;flex-wrap:wrap;}
-  .timeline-points{width:min(88vw,390px);}
-  .tl-dot{height:2.35rem;padding-bottom:1.5rem;}
-  .tl-dot .tl-artist{display:none;}
-  .tl-dot .tl-year{font-size:.5rem;}
+  .work-index.is-timeline{padding:2.3rem 1.15rem 3.15rem;gap:1.65rem;overflow-x:auto;justify-items:start;}
+  .timeline-readout{justify-self:center;width:min(100%,28rem);}
+  .tr-title{font-size:1.2rem;}
+  .tr-meta{font-size:.7rem;gap:.55rem;flex-wrap:wrap;}
+  .timeline-points{width:max(760px,100%);padding:.25rem 0 1.15rem;}
+  .timeline-points::before{top:.72rem;}
+  .tl-dot{height:4.4rem;padding-bottom:3.3rem;}
+  .tl-dot::before{top:.52rem;width:7px;height:7px;}
+  .tl-dot .tl-year{top:1.22rem;font-size:.64rem;}
+  .tl-dot .tl-artist{display:block;top:2.1rem;width:6.2rem;font-size:.54rem;line-height:1.05;}
   .wi-row{grid-template-columns:1fr;gap:.24rem;}
 	  .wi-row.podcast-row{grid-template-columns:1fr;}
 	  .wi-title{grid-column:auto;}
@@ -1254,21 +1261,21 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 	    <div class="expo-side">
 	      <div class="wr-gallery" aria-label="images de what remains">
 	        <div class="wr-gallery-stage">
-	          <img class="wr-frame is-active" src="assets/what-remains-gallery/what-remains-01.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-02.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-03.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-04.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-05.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-06.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-07.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-08.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-09.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-10.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-11.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-12.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-13.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-14.jpg" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-15.jpg" alt="">
+	          <img class="wr-frame is-active" src="assets/what-remains-gallery/what-remains-01.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-02.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-03.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-04.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-05.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-06.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-07.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-08.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-09.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-10.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-11.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-12.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-13.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-14.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-15.jpg" loading="lazy" decoding="async" alt="">
 	        </div>
 	      </div>
 	      <a class="wr-credit" href="https://eleajeanneschmitter.format.com/" target="_blank" rel="noopener">© éléa-jeanne schmitter</a>
@@ -1804,6 +1811,23 @@ function cacheRects(){mR=mSec.getBoundingClientRect();pR=pSec.getBoundingClientR
 cacheRects();
 window.addEventListener('scroll',cacheRects,{passive:true});
 window.addEventListener('resize',cacheRects,{passive:true});
+let mVisible=true,pVisible=true,carouselRaf=0;
+function scheduleCarousel(){
+  if(window.innerWidth<=760||carouselRaf)return;
+  carouselRaf=requestAnimationFrame(tick);
+}
+if('IntersectionObserver' in window){
+  const carouselObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.target===mSec)mVisible=entry.isIntersecting;
+      if(entry.target===pSec)pVisible=entry.isIntersecting;
+    });
+    scheduleCarousel();
+  },{rootMargin:'35% 0px',threshold:.01});
+  carouselObserver.observe(mSec);
+  carouselObserver.observe(pSec);
+}
+document.addEventListener('visibilitychange',scheduleCarousel);
 
 let hovEl=null;
 const previewAudio=new Audio();
@@ -2145,6 +2169,7 @@ function focusCarouselCover(el){
   }else if(pCvs.includes(el)){
     const i=pCvs.indexOf(el);if(i!==-1)pRotTarget=calcTarget(i,NP,pRot);
   }
+  scheduleCarousel();
 }
 function releaseCarouselCover(el){
   if(mCvs.includes(el))mRotTarget=null;
@@ -2155,6 +2180,7 @@ function onIdxEnter(id){
   setTimelineActive(id);
   mRotTarget=calcTarget(i,NM,mRot);
   mCvs.forEach(el=>{el._dim=el.dataset.id!==id;});
+  scheduleCarousel();
   playOutsidePreview(id);
 }
 function onIdxLeave(){mRotTarget=null;mCvs.forEach(el=>{el._dim=false;});stopOutsidePreview();}
@@ -2162,6 +2188,7 @@ function onIdxEnterP(id){
   const i=pCvs.findIndex(el=>el.dataset.id===id);if(i===-1)return;
   pRotTarget=calcTarget(i,NP,pRot);
   pCvs.forEach(el=>{el._dim=el.dataset.id!==id;});
+  scheduleCarousel();
   playOutsidePreview(id);
 }
 function onIdxLeaveP(){pRotTarget=null;pCvs.forEach(el=>{el._dim=false;});stopOutsidePreview();}
@@ -2179,32 +2206,31 @@ function group(cvs,N,secR,rot,R,YT,cyOff,flipX=false){
     const vx=secR.left+cx+ox,vy=secR.top+cy+oy;
     const dx=mx-vx,dy=my-vy,d=Math.sqrt(dx*dx+dy*dy),inf=Math.max(0,1-d/210);
     const rx=-(dy/210)*8*inf,ry=(dx/210)*8*inf;
-    const br=(0.48+0.62*dn).toFixed(2);
-    const sy=(6+30*dn).toFixed(0),sb=(14+50*dn).toFixed(0),sa=(0.3+0.55*(1-dn*.35)).toFixed(2);
     el.querySelector('.cvl').style.opacity=Math.min(1,(el._dim?0:(0.28+0.72*dn)*el._hs)).toFixed(2);
     el.style.opacity=el._op.toFixed(3);
     el.style.zIndex=isHover?160:Math.round(dn*90);
     el.style.transform=`translate3d(calc(-50% + ${ox.toFixed(1)}px),calc(-50% + ${oy.toFixed(1)}px),0) scale(${(p*el._hs).toFixed(3)})`;
-    const cvsh=el.querySelector('.cv-sh'),cvtilt=el.querySelector('.cv-tilt');
-    const cvimg=el.querySelector('.cvf img,.cvf .ph'),shine=el.querySelector('.cv-shine');
-    cvsh.style.boxShadow=`0 ${sy}px ${sb}px rgba(0,0,0,${sa})`;
+    const cvtilt=el.querySelector('.cv-tilt');
     cvtilt.style.transform=`perspective(600px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
-    if(cvimg)cvimg.style.filter=`brightness(${br})`;
-    if(shine){const ssx=(40+ry*5.5).toFixed(0),ssy=(40-rx*5.5).toFixed(0),si=(0.06+dn*.07).toFixed(2);shine.style.background=`radial-gradient(ellipse 80% 70% at ${ssx}% ${ssy}%,rgba(255,255,255,${si}) 0%,transparent 55%)`;}
   });
 }
 
 function tick(){
+  carouselRaf=0;
+  if(document.hidden)return;
+  const animateM=mVisible||mRotTarget!==null||mCvs.includes(hovEl);
+  const animateP=pVisible||pRotTarget!==null||pCvs.includes(hovEl);
+  if(!animateM&&!animateP)return;
   if(mRotTarget!==null){mSpd=0;const d=mRotTarget-mRot;if(Math.abs(d)>.0008)mRot+=d*.06;else mRot=mRotTarget;}
   else{mSpd+=(M_SPD-mSpd)*.055;mRot+=mSpd;}
   if(pRotTarget!==null){pSpd=0;const d=pRotTarget-pRot;if(Math.abs(d)>.0008)pRot+=d*.06;else pRot=pRotTarget;}
   else{pSpd+=(P_SPD-pSpd)*.04;pRot+=pSpd;}
   const mW=mSec.offsetWidth,mH=mSec.offsetHeight,pW=pSec.offsetWidth,pH=pSec.offsetHeight;
-  group(mCvs,NM,mR,mRot,Math.min(mW*.245,mH*.34),0.18,-mH*.13,true);
-  group(pCvs,NP,pR,pRot,Math.min(pW*.195,pH*.32),0.17,-pH*.11);
-  requestAnimationFrame(tick);
+  if(animateM)group(mCvs,NM,mR,mRot,Math.min(mW*.245,mH*.34),0.18,-mH*.13,true);
+  if(animateP)group(pCvs,NP,pR,pRot,Math.min(pW*.195,pH*.32),0.17,-pH*.11);
+  scheduleCarousel();
 }
-if(window.innerWidth>760)tick();
+scheduleCarousel();
 
 function openModal(id){
   const p=ALL[id];if(!p)return;
@@ -2213,7 +2239,7 @@ function openModal(id){
   const mAr=document.getElementById('mAr');
   mAr.textContent=p.artist||'';
   mAr.style.display=p.artist?'':'none';
-  document.getElementById('mArt').innerHTML=p.img?'<img src="'+p.img+'" alt="">':'<div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0f28,#060610);"></div>';
+  document.getElementById('mArt').innerHTML=p.img?'<img src="'+p.img+'" loading="lazy" decoding="async" alt="">':'<div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0f28,#060610);"></div>';
   const lk=document.getElementById('mLk');
   if(p.link){lk.href=p.link;lk.style.display='inline';}else lk.style.display='none';
   document.getElementById('modal').classList.add('open');
