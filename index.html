@@ -271,26 +271,43 @@ body.gate-open{overflow:hidden;}
 }
 /* ── NAV — quiet index word ──────────────────────────────────────── */
 .top-nav{
-  position:fixed;top:0;left:0;right:0;z-index:400;
-  display:flex;justify-content:space-between;align-items:flex-start;
-  padding:1.8rem 2.4rem;
-  mix-blend-mode:normal;
-  pointer-events:none;
+  position:fixed;top:0;left:0;right:0;z-index:440;
+  min-height:42px;padding:0 .95rem;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:1rem;
+  background:rgba(2,2,2,.94);color:rgba(247,244,235,.82);
+  border-bottom:1px solid rgba(237,235,226,.15);
+  box-shadow:0 10px 34px rgba(0,0,0,.18);
+  backdrop-filter:blur(12px);
+  mix-blend-mode:normal;pointer-events:auto;
 }
-.nav-mark{
-  pointer-events:auto;
-  font-size:.68rem;letter-spacing:.18em;text-transform:lowercase;
-  color:rgba(23,19,15,.48);
+.nav-strip,.nav-status{display:flex;align-items:center;min-width:0;}
+.nav-strip{gap:.58rem;overflow:hidden;white-space:nowrap;}
+.nav-status{gap:.72rem;justify-content:flex-end;}
+.nav-chip,.nav-status-label,.nav-section{
+  font-family:var(--font-ui);font-size:.58rem;letter-spacing:.14em;text-transform:lowercase;
+  line-height:1;color:rgba(247,244,235,.56);
+}
+.nav-chip{display:inline-flex;align-items:center;gap:.58rem;min-width:0;}
+.nav-chip::after{
+  content:'';display:block;width:3px;height:3px;border-radius:50%;background:rgba(247,244,235,.30);
+}
+.nav-chip:last-child::after{content:none;}
+.nav-brand{color:rgba(255,253,246,.92);}
+.nav-section{color:rgba(255,253,246,.90);min-width:12.6rem;max-width:min(32vw,17rem);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.nav-status-label{color:rgba(247,244,235,.34);}
+.nav-status-label::after{content:':';}
+.nav-console-light{
+  width:6px;height:6px;border-radius:50%;background:rgba(184,68,50,.76);
+  box-shadow:0 0 14px rgba(184,68,50,.36);
 }
 .menu-btn{
-  pointer-events:auto;
-  background:none;border:none;cursor:pointer;
+  pointer-events:auto;background:none;border:none;cursor:pointer;
   font-family:var(--font-ui);font-size:.78rem;
   letter-spacing:.22em;text-transform:lowercase;
-  color:var(--fg);opacity:.55;transition:opacity .25s;
-  padding:0;
+  color:rgba(247,244,235,.76);opacity:1;transition:color .25s,opacity .25s,transform .25s;
+  padding:.2rem 0 .22rem .75rem;border-left:1px solid rgba(247,244,235,.16);
 }
-.menu-btn:hover{opacity:1;}
+.menu-btn:hover{color:rgba(255,253,246,.98);transform:translateY(-1px);}
 
 /* ── CONTACT TAB ─────────────────────────────────────────────────── */
 .contact-tab{
@@ -835,7 +852,8 @@ body.gate-open{overflow:hidden;}
 		  border-bottom:1px solid rgba(237,235,226,.20);padding-bottom:.12rem;transition:color .2s,border-color .2s,opacity .2s;
 		}
 	.wr-credit:hover{color:rgba(237,235,226,.88);border-color:rgba(237,235,226,.55);}
-		body.expo-night .top-nav,body.expo-night .menu-btn,body.expo-night .nav-mark{color:rgba(247,244,235,.78);}
+		body.expo-night .top-nav{background:rgba(2,2,2,.96);border-bottom-color:rgba(237,235,226,.18);color:rgba(247,244,235,.78);}
+		body.expo-night .menu-btn{color:rgba(247,244,235,.86);}
 		body.expo-night .contact-tab{background:rgba(237,235,226,.08);border-color:rgba(237,235,226,.18);color:rgba(247,244,235,.82);box-shadow:0 18px 58px rgba(0,0,0,.26);}
 	body.expo-night .contact-icon{border-color:rgba(237,235,226,.18);}
 	body.expo-night .cd.sm{background:rgba(237,235,226,.65);}
@@ -932,7 +950,13 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   .intro-foot{gap:.8rem;align-items:flex-start;font-size:.6rem;}
   .intro-actions{gap:1.25rem;margin:.85rem 0 0;}
   .intro-actions button{font-size:.62rem;padding:.12rem 0 .22rem;min-width:0;}
-  .nav-mark{display:none;}
+  .top-nav{min-height:42px;padding:.42rem .75rem;grid-template-columns:1fr auto;gap:.65rem;}
+  .nav-strip{gap:.42rem;}
+  .nav-chip,.nav-status-label,.nav-section{font-size:.5rem;letter-spacing:.11em;}
+  .nav-meta.optional{display:none;}
+  .nav-section{min-width:5.6rem;max-width:26vw;}
+  .nav-status{gap:.45rem;}
+  .menu-btn{font-size:.62rem;letter-spacing:.16em;padding-left:.55rem;}
   .contact-tab{left:1rem;right:1rem;bottom:.9rem;min-width:0;padding:.48rem 0;}
   .contact-tab span{font-size:.72rem;letter-spacing:.18em;}
   .contact-icon{width:30px;height:30px;}
@@ -969,7 +993,6 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   footer{padding:1rem 1.4rem 1.35rem;gap:.8rem;flex-wrap:wrap;}
   .mi2{grid-template-columns:1fr;padding:4rem 1.4rem;gap:2.5rem;}
   .ma{position:static;}
-  .top-nav{padding:1.2rem 1.5rem;}
   .sec-head{padding:2.15rem 1.5rem 1rem;justify-content:center;}
   .sh-title{text-align:center;font-size:.92rem;}
   .work-index{padding:2rem 1.2rem 2.4rem;}
@@ -1035,9 +1058,20 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 <div class="cd sm" id="cur"></div>
 
 <!-- NAV -->
-<div class="top-nav">
-  <span class="nav-mark">théo herrerias · carnet</span>
-  <button class="menu-btn" id="menuBtn">index</button>
+<div class="top-nav" aria-label="navigation principale">
+  <div class="nav-strip" aria-hidden="true">
+    <span class="nav-chip nav-brand">théo herrerias</span>
+    <span class="nav-chip nav-meta">composition</span>
+    <span class="nav-chip nav-meta optional">production</span>
+    <span class="nav-chip nav-meta optional">récits audio</span>
+    <span class="nav-chip nav-meta">paris</span>
+  </div>
+  <div class="nav-status">
+    <span class="nav-console-light" aria-hidden="true"></span>
+    <span class="nav-status-label">section</span>
+    <span class="nav-section" id="navSection">accueil</span>
+    <button class="menu-btn" id="menuBtn">index</button>
+  </div>
 </div>
 
 <div class="contact-tab" aria-label="contact">
@@ -1577,6 +1611,104 @@ document.getElementById('menuBtn').addEventListener('click',()=>document.getElem
 document.getElementById('menuClose').addEventListener('click',closeMenu);
 function closeMenu(){document.getElementById('menuOverlay').classList.remove('open');}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+
+// ── GSAP top signal ────────────────────────────────────────────────
+const navSectionLabel=document.getElementById('navSection');
+function setNavSection(label){
+  if(!navSectionLabel||navSectionLabel.textContent===label)return;
+  if(window.gsap){
+    gsap.to(navSectionLabel,{opacity:0,y:-4,duration:.14,ease:'power1.out',onComplete:()=>{
+      navSectionLabel.textContent=label;
+      gsap.fromTo(navSectionLabel,{opacity:0,y:5},{opacity:1,y:0,duration:.22,ease:'power1.out'});
+    }});
+  }else if(navSectionLabel.animate){
+    navSectionLabel.animate([{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-4px)'}],{duration:140,easing:'ease-out'}).finished.then(()=>{
+      navSectionLabel.textContent=label;
+      navSectionLabel.animate([{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:220,easing:'ease-out'});
+    }).catch(()=>{
+      navSectionLabel.textContent=label;
+    });
+  }else navSectionLabel.textContent=label;
+}
+function setupTopSignal(){
+  const items=[
+    {el:document.querySelector('.hero'),label:'accueil'},
+    {el:document.getElementById('realisations'),label:'réalisations'},
+    {el:document.getElementById('podcasts'),label:'podcasts'},
+    {el:document.getElementById('expositions'),label:'expositions & installations'},
+    {el:document.getElementById('bio'),label:'biographie'}
+  ].filter(item=>item.el);
+  if(window.gsap){
+    if(window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.top-nav',{yPercent:-105,opacity:0,duration:.7,ease:'power3.out',delay:.12});
+    gsap.from('.nav-chip,.nav-status > *',{y:8,opacity:0,duration:.48,ease:'power2.out',stagger:.04,delay:.28});
+    if(window.ScrollTrigger){
+      items.forEach(item=>{
+        ScrollTrigger.create({
+          trigger:item.el,
+          start:'top center',
+          end:'bottom center',
+          onEnter:()=>setNavSection(item.label),
+          onEnterBack:()=>setNavSection(item.label)
+        });
+      });
+      document.querySelectorAll('.sec-head').forEach(head=>{
+        const title=head.querySelector('.sh-title');
+        if(!title)return;
+        gsap.from(title,{
+          scrollTrigger:{trigger:head,start:'top 78%',toggleActions:'play none none reverse'},
+          x:-18,opacity:0,duration:.62,ease:'power2.out'
+        });
+      });
+    }
+  }else{
+    const nav=document.querySelector('.top-nav');
+    if(nav&&nav.animate){
+      nav.animate([
+        {transform:'translateY(-105%)',opacity:0},
+        {transform:'translateY(0)',opacity:1}
+      ],{duration:700,delay:120,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+      document.querySelectorAll('.nav-chip,.nav-status > *').forEach((item,index)=>{
+        item.animate([
+          {transform:'translateY(8px)',opacity:0},
+          {transform:'translateY(0)',opacity:1}
+        ],{duration:480,delay:280+(index*40),easing:'ease-out',fill:'both'});
+      });
+    }
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const item=items.find(candidate=>candidate.el===entry.target);
+            if(item)setNavSection(item.label);
+          }
+        });
+      },{rootMargin:'-42% 0px -42% 0px',threshold:.01});
+      items.forEach(item=>observer.observe(item.el));
+      const revealObserver=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(!entry.isIntersecting)return;
+          const title=entry.target;
+          title.style.opacity='1';
+          title.style.transform='none';
+          if(title.animate){
+            title.animate([
+              {opacity:0,transform:'translateX(-18px)'},
+              {opacity:1,transform:'translateX(0)'}
+            ],{duration:620,easing:'ease-out',fill:'both'});
+          }
+          revealObserver.unobserve(title);
+        });
+      },{rootMargin:'0px 0px -22% 0px',threshold:.01});
+      document.querySelectorAll('.sec-head .sh-title').forEach(title=>{
+        title.style.opacity='0';
+        title.style.transform='translateX(-18px)';
+        revealObserver.observe(title);
+      });
+    }
+  }
+}
+setupTopSignal();
 
 // ── Hero ambient canvas ────────────────────────────────────────────
 (function(){
