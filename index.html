@@ -744,14 +744,21 @@ body.gate-open{overflow:hidden;}
 	  line-height:1.1;letter-spacing:.08em;text-transform:lowercase;color:rgba(23,19,15,.72);
 	  margin:0 0 1.15rem;max-width:none;
 	}
-.expo-copy p:not(.expo-place){
-  font-family:var(--font-ui);font-size:.84rem;line-height:1.74;color:rgba(23,19,15,.50);
-  max-width:33rem;margin:0 0 1.45rem clamp(.2rem,8vw,7.5rem);
-}
-.expo-sound-plate{
-  position:relative;margin:1.8rem 0 0;max-width:46rem;padding:.85rem 0 0;
-  border-top:1px solid rgba(23,19,15,.16);
-  --listen-progress:0;
+	.expo-copy p:not(.expo-place){
+	  font-family:var(--font-ui);font-size:.84rem;line-height:1.74;color:rgba(23,19,15,.50);
+	  max-width:33rem;margin:0 0 1.45rem clamp(.2rem,8vw,7.5rem);
+	}
+	.expo-body{
+	  max-width:33rem;margin:0 0 1.45rem clamp(.2rem,8vw,7.5rem);
+	}
+	.expo-copy .expo-body p{
+	  max-width:none;margin:0 0 .72rem;
+	}
+	.expo-copy .expo-body p:last-child{margin-bottom:0;}
+	.expo-sound-plate{
+	  position:relative;margin:1.8rem 0 0;max-width:46rem;padding:.85rem 0 0;
+	  border-top:1px solid rgba(23,19,15,.16);
+	  --listen-progress:0;
 }
 .expo-sound-plate::before{
   content:'';position:absolute;inset:4% 0 16%;pointer-events:none;
@@ -1043,14 +1050,16 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 		  .expo-media{padding:.38rem;box-shadow:0 14px 42px rgba(23,19,15,.09),inset 0 0 0 1px rgba(23,19,15,.055);}
 		  .expo-side{gap:.85rem;}
 		  .expo-side .expo-media{width:min(100%,520px);justify-self:center;}
-		  .wr-gallery{width:min(100%,520px);aspect-ratio:16/11;}
-		  .wr-credit{font-size:.52rem;margin-top:-.42rem;margin-right:.04rem;}
-	  .expo-title{font-size:.96rem;max-width:none;}
-	  .expo-copy p:not(.expo-place){font-size:.8rem;margin:0 0 1.25rem;}
-	  .expo-sound-plate{margin-top:1.25rem;}
-	  .expo-listen{min-height:3.35rem;font-size:.72rem;}
-  .expo-empty{grid-template-columns:1fr;gap:.55rem;font-size:.76rem;padding:1rem 0;}
-  .expo-empty span:last-child{justify-self:start;}
+			  .wr-gallery{width:min(100%,520px);aspect-ratio:16/11;}
+			  .wr-credit{font-size:.52rem;margin-top:-.42rem;margin-right:.04rem;}
+		  .expo-title{font-size:.96rem;max-width:none;}
+		  .expo-copy p:not(.expo-place){font-size:.8rem;margin:0 0 1.25rem;}
+		  .expo-body{margin:0 0 1.25rem;}
+		  .expo-copy .expo-body p{margin:0 0 .72rem;}
+		  .expo-sound-plate{margin-top:1.25rem;}
+		  .expo-listen{min-height:3.35rem;font-size:.72rem;}
+	  .expo-empty{grid-template-columns:1fr;gap:.55rem;font-size:.76rem;padding:1rem 0;}
+	  .expo-empty span:last-child{justify-self:start;}
   .menu-links a{font-size:clamp(2.8rem,12vw,6rem);}
 }
 @media(prefers-reduced-motion:reduce){
@@ -1265,7 +1274,12 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
     <div class="expo-copy">
       <p class="expo-place">19m, paris</p>
       <h3 class="expo-title">what remains</h3>
-      <p>œuvre sonore composée pour l’installation d’éléa-jeanne schmitter. une trajectoire, des ondes, un labyrinthe fragile.</p>
+      <div class="expo-body">
+        <p>What Remains est une installation née d’une réflexion sur la mémoire choisie et la transmission volontaire, prenant pour point de départ les plaques Pioneer envoyées dans l’espace par la NASA dans les années 1970. Présentées comme universelles, ces représentations traduisaient en réalité une vision partielle, normée et hiérarchisée de l’humanité.</p>
+        <p>L’œuvre propose une relecture sensible de ce geste : une nouvelle plaque, redessinée et brodée, enrichie de formes issues du corps, du geste, du numérique et de l’intime, devient support à une mémoire plurielle et mouvante. Chacun est invité à y inscrire ce qu’il ou elle souhaite transmettre, transformant l’installation en un espace partagé, vivant et évolutif.</p>
+        <p>Au cœur du projet, une œuvre sonore composée par Théo Herrerias rassemble des fragments de voix, de récits et de musiques collectés. Cette piste audio, faite d’éclats fragiles et d’histoires suspendues, invente un territoire d’accueil pour ce qui reste : les paroles incomplètes, les mémoires effacées, les voix à peine audibles qui trouvent enfin à résonner ensemble.</p>
+        <p>What Remains invente ainsi un lieu de transmission sensible et collective, où la mémoire n’est plus imposée, mais choisie, réinterprétée et partagée.</p>
+      </div>
       <div class="expo-sound-plate" aria-hidden="false">
         <svg class="expo-sound-map" viewBox="0 0 720 186" role="slider" tabindex="0" aria-label="parcourir what remains" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
           <path class="expo-sound-guide" d="M16 112 C56 70 94 144 142 98 S214 34 276 88 344 154 406 104 494 30 548 76 642 142 704 88"></path>
