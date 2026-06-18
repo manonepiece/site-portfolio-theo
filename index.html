@@ -925,33 +925,41 @@ body.gate-open{overflow:hidden;}
 	#what-remains .expo-side{
 	  gap:clamp(1.4rem,4.4vw,4.4rem);align-self:stretch;align-content:center;
 	}
+	#what-remains .expo-side::before{
+	  content:'';position:absolute;inset:clamp(-1.1rem,-2vw,-.5rem) clamp(-1.2rem,-2vw,-.6rem);
+	  z-index:-1;pointer-events:none;
+	  background:
+	    radial-gradient(ellipse 78% 58% at 54% 26%,rgba(237,235,226,.10),transparent 72%),
+	    radial-gradient(ellipse 72% 52% at 54% 76%,rgba(237,235,226,.075),transparent 74%);
+	  filter:blur(18px);opacity:.72;
+	}
 	#what-remains .wr-gallery{
-	  opacity:.62;box-shadow:none;background:transparent;
-	  -webkit-mask-image:radial-gradient(ellipse at center,#000 0 62%,rgba(0,0,0,.72) 82%,transparent 100%);
-	  mask-image:radial-gradient(ellipse at center,#000 0 62%,rgba(0,0,0,.72) 82%,transparent 100%);
+	  opacity:.86;box-shadow:none;background:transparent;
+	  -webkit-mask-image:radial-gradient(ellipse at center,#000 0 74%,rgba(0,0,0,.82) 90%,transparent 100%);
+	  mask-image:radial-gradient(ellipse at center,#000 0 74%,rgba(0,0,0,.82) 90%,transparent 100%);
 	}
 	#what-remains .wr-gallery-stage{background:transparent;}
 	#what-remains .wr-gallery-stage::before{opacity:.055;}
 	#what-remains .wr-gallery-stage::after{content:none;}
 	#what-remains .wr-frame{
-	  filter:saturate(.62) contrast(1.02) brightness(.72);
+	  filter:saturate(.86) contrast(1.04) brightness(.88);
 	}
-	#what-remains .wr-frame.is-active{opacity:.78;}
+	#what-remains .wr-frame.is-active{opacity:.96;}
 	#what-remains .expo-side .expo-media{
-	  padding:0;background:transparent;box-shadow:none;opacity:.54;margin-top:clamp(1.1rem,3.4vw,3.2rem);
-	  -webkit-mask-image:radial-gradient(ellipse at center,#000 0 66%,rgba(0,0,0,.76) 84%,transparent 100%);
-	  mask-image:radial-gradient(ellipse at center,#000 0 66%,rgba(0,0,0,.76) 84%,transparent 100%);
+	  padding:0;background:transparent;box-shadow:none;opacity:.78;margin-top:clamp(1.1rem,3.4vw,3.2rem);
+	  -webkit-mask-image:radial-gradient(ellipse at center,#000 0 76%,rgba(0,0,0,.84) 91%,transparent 100%);
+	  mask-image:radial-gradient(ellipse at center,#000 0 76%,rgba(0,0,0,.84) 91%,transparent 100%);
 	}
 	#what-remains .expo-side .expo-media:hover,
 	#what-remains .expo-side .expo-media.is-playing{
-	  opacity:.82;transform:translateY(-.12rem);
+	  opacity:.94;transform:translateY(-.12rem);
 	}
 	#what-remains .expo-media::before,
 	#what-remains .expo-media::after{
 	  content:none;
 	}
 	#what-remains .expo-video{
-	  filter:saturate(.58) contrast(1.04) brightness(.68);
+	  filter:saturate(.82) contrast(1.04) brightness(.84);
 	}
 	.expo-empty{
 	  border-top:1px solid rgba(23,19,15,.11);border-bottom:1px solid rgba(23,19,15,.08);
