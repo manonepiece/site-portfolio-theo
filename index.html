@@ -313,25 +313,23 @@ body.gate-open{overflow:hidden;}
 .contact-tab{
   position:fixed;right:1.6rem;bottom:1.4rem;z-index:430;
   display:flex;align-items:center;gap:.65rem;
-  min-width:min(92vw,300px);
-  padding:.5rem 0 .48rem;
-  border-top:1px solid rgba(23,19,15,.24);
-  border-bottom:1px solid rgba(23,19,15,.12);
-  border-left:0;border-right:0;border-radius:0;
-  background:rgba(211,208,199,.26);
+  min-width:0;
+  padding:0;
+  border:0;border-radius:0;
+  background:transparent;
   color:var(--fg);text-decoration:none;
-  box-shadow:none;backdrop-filter:blur(4px);
+  box-shadow:none;backdrop-filter:none;
 }
 .contact-tab span{
-  flex:1;font-family:var(--font-ui);font-size:.82rem;
-  letter-spacing:.22em;text-transform:lowercase;color:rgba(23,19,15,.58);
+  display:none;
 }
 .contact-icon{
-  display:grid;place-items:center;width:30px;height:30px;
-  border:0;border-radius:0;color:rgba(23,19,15,.64);background:transparent;
-  transition:color .2s,transform .2s,opacity .2s;
+  display:grid;place-items:center;width:34px;height:34px;
+  border:1px solid rgba(23,19,15,.16);border-radius:0;color:rgba(23,19,15,.62);
+  background:rgba(237,235,226,.22);backdrop-filter:blur(5px);
+  transition:color .2s,transform .2s,opacity .2s,border-color .2s,background .2s;
 }
-.contact-icon:hover{color:var(--fg);transform:translateY(-1px);opacity:1;}
+.contact-icon:hover{color:var(--fg);border-color:rgba(23,19,15,.34);background:rgba(237,235,226,.34);transform:translateY(-1px);opacity:1;}
 .contact-icon svg{width:18px;height:18px;display:block;}
 
 /* ── MENU OVERLAY — full-screen index ────────────────────────────── */
@@ -678,6 +676,7 @@ body.gate-open{overflow:hidden;}
 			}
 	#what-remains{
 	  isolation:isolate;padding:clamp(2.2rem,4.2vw,4.2rem) clamp(1.1rem,3vw,2.7rem);
+	  position:relative;overflow:hidden;
 	  border-color:rgba(237,235,226,.18);
 	  background:
 	    linear-gradient(90deg,rgba(2,2,2,.92) 0%,rgba(2,2,2,.82) 44%,rgba(2,2,2,.52) 72%,rgba(2,2,2,.36) 100%),
@@ -687,12 +686,10 @@ body.gate-open{overflow:hidden;}
 	  box-shadow:0 24px 80px rgba(0,0,0,.22),inset 0 0 0 1px rgba(237,235,226,.06);
 	}
 	#what-remains::before{
-	  border-color:rgba(237,235,226,.08);
-	  background:radial-gradient(circle at 50% 50%,transparent 0 39%,rgba(237,235,226,.035) 40%,transparent 42%);
+	  content:none;
 	}
 	#what-remains::after{
-	  background:rgba(237,235,226,.20);
-	  box-shadow:72px -34px 0 rgba(237,235,226,.08),136px 28px 0 rgba(237,235,226,.12),206px -4px 0 rgba(237,235,226,.08);
+	  content:none;
 	}
 	.expo-work::before{
 	  content:'';position:absolute;left:clamp(1rem,6vw,5.4rem);top:clamp(1.4rem,4vw,3.6rem);
@@ -762,17 +759,49 @@ body.gate-open{overflow:hidden;}
 	  line-height:1.1;letter-spacing:.08em;text-transform:lowercase;color:rgba(23,19,15,.72);
 	  margin:0 0 1.15rem;max-width:none;
 	}
-	.expo-copy p:not(.expo-place){
+	.expo-collab{
+	  font-family:var(--font-ui);font-size:.68rem;line-height:1.55;letter-spacing:.09em;text-transform:lowercase;
+	  max-width:33rem;margin:-.45rem 0 1.45rem clamp(.2rem,8vw,7.5rem);
+	  color:rgba(23,19,15,.42);
+	}
+	.expo-context-panel{
+	  max-width:48rem;margin:0 0 1.6rem clamp(.2rem,8vw,7.5rem);
+	}
+	.expo-toggle{
+	  appearance:none;-webkit-appearance:none;width:100%;border:0;border-top:1px solid rgba(23,19,15,.12);
+	  border-bottom:1px solid rgba(23,19,15,.08);background:transparent;color:rgba(23,19,15,.54);
+	  min-height:3.1rem;padding:0;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;
+	  font-family:var(--font-ui);font-size:.72rem;letter-spacing:.1em;text-transform:lowercase;text-align:left;
+	  cursor:pointer;outline:none;transition:color .22s,border-color .22s,box-shadow .22s;
+	}
+	.expo-toggle-mark{
+	  font-size:.92rem;line-height:1;transition:transform .34s cubic-bezier(.23,1,.32,1);
+	}
+	.expo-toggle:hover,.expo-toggle:focus-visible{
+	  color:rgba(23,19,15,.78);border-top-color:rgba(23,19,15,.25);
+	}
+	.expo-toggle:focus-visible{
+	  box-shadow:0 0 0 1px rgba(23,19,15,.20);
+	}
+	.expo-copy p:not(.expo-place):not(.expo-collab){
 	  font-family:var(--font-ui);font-size:.84rem;line-height:1.74;color:rgba(23,19,15,.50);
 	  max-width:33rem;margin:0 0 1.45rem clamp(.2rem,8vw,7.5rem);
 	}
 	.expo-body{
-	  max-width:33rem;margin:0 0 1.45rem clamp(.2rem,8vw,7.5rem);
+	  max-width:48rem;max-height:0;overflow:hidden;margin:0;
+	  opacity:0;transform:translateY(-.24rem);
+	  transition:max-height .58s cubic-bezier(.23,1,.32,1),opacity .34s,transform .42s,padding .42s;
 	}
 	.expo-copy .expo-body p{
-	  max-width:none;margin:0 0 .72rem;
+	  max-width:none;margin:0 0 .88rem;
 	}
 	.expo-copy .expo-body p:last-child{margin-bottom:0;}
+	#what-remains.is-context-open .expo-body{
+	  max-height:48rem;padding-top:1rem;opacity:1;transform:translateY(0);
+	}
+	#what-remains.is-context-open .expo-toggle-mark{
+	  transform:rotate(45deg);
+	}
 	.expo-sound-plate{
 	  position:relative;margin:1.8rem 0 0;max-width:46rem;padding:.85rem 0 0;
 	  border-top:1px solid rgba(23,19,15,.16);
@@ -839,8 +868,26 @@ body.gate-open{overflow:hidden;}
 	.expo-link:hover{color:rgba(23,19,15,.72);border-color:rgba(23,19,15,.38);}
 	#what-remains .expo-place,
 	#what-remains .expo-title{color:rgba(247,244,235,.88);}
-	#what-remains .expo-copy p:not(.expo-place){
+	#what-remains .expo-collab{
+	  color:rgba(247,244,235,.62);text-shadow:0 1px 18px rgba(0,0,0,.44);
+	  max-width:48rem;margin:-.42rem 0 1.15rem;
+	}
+	#what-remains .expo-context-panel{
+	  margin-left:0;
+	}
+	#what-remains .expo-toggle{
+	  color:rgba(247,244,235,.64);border-top-color:rgba(237,235,226,.16);border-bottom-color:rgba(237,235,226,.11);
+	}
+	#what-remains .expo-toggle:hover,
+	#what-remains .expo-toggle:focus-visible{
+	  color:rgba(255,253,246,.92);border-top-color:rgba(237,235,226,.34);
+	}
+	#what-remains .expo-toggle:focus-visible{
+	  box-shadow:0 0 0 1px rgba(237,235,226,.22);
+	}
+	#what-remains .expo-copy p:not(.expo-place):not(.expo-collab){
 	  color:rgba(247,244,235,.76);text-shadow:0 1px 18px rgba(0,0,0,.46);
+	  max-width:48rem;margin-left:0;
 	}
 	#what-remains .expo-sound-plate{border-top-color:rgba(237,235,226,.20);}
 	#what-remains .expo-sound-plate::before{
@@ -862,8 +909,46 @@ body.gate-open{overflow:hidden;}
 	#what-remains .expo-progress span{background:rgba(237,235,226,.62);}
 	#what-remains .expo-link{color:rgba(247,244,235,.62);border-color:rgba(237,235,226,.24);}
 	#what-remains .expo-link:hover{color:rgba(255,253,246,.92);border-color:rgba(237,235,226,.50);}
+	#what-remains > .expo-copy,
+	#what-remains > .expo-side{
+	  position:relative;z-index:3;
+	}
+	#what-remains .expo-copy::before{
+	  content:'';position:absolute;inset:clamp(.2rem,1.2vw,.8rem) clamp(-1rem,-2vw,-.4rem) clamp(-1rem,-2vw,-.4rem);
+	  z-index:-1;pointer-events:none;
+	  background:linear-gradient(90deg,rgba(2,2,2,.68),rgba(2,2,2,.38) 62%,rgba(2,2,2,0));
+	  filter:blur(22px);opacity:.86;
+	}
+	#what-remains .expo-side{
+	  gap:clamp(1.4rem,4.4vw,4.4rem);align-self:stretch;align-content:center;
+	}
 	#what-remains .wr-gallery{
-	  opacity:.76;box-shadow:0 16px 54px rgba(0,0,0,.22),inset 0 0 0 1px rgba(237,235,226,.08);
+	  opacity:.62;box-shadow:none;background:transparent;
+	  -webkit-mask-image:radial-gradient(ellipse at center,#000 0 62%,rgba(0,0,0,.72) 82%,transparent 100%);
+	  mask-image:radial-gradient(ellipse at center,#000 0 62%,rgba(0,0,0,.72) 82%,transparent 100%);
+	}
+	#what-remains .wr-gallery-stage{background:transparent;}
+	#what-remains .wr-gallery-stage::before{opacity:.055;}
+	#what-remains .wr-gallery-stage::after{content:none;}
+	#what-remains .wr-frame{
+	  filter:saturate(.62) contrast(1.02) brightness(.72);
+	}
+	#what-remains .wr-frame.is-active{opacity:.78;}
+	#what-remains .expo-side .expo-media{
+	  padding:0;background:transparent;box-shadow:none;opacity:.54;margin-top:clamp(1.1rem,3.4vw,3.2rem);
+	  -webkit-mask-image:radial-gradient(ellipse at center,#000 0 66%,rgba(0,0,0,.76) 84%,transparent 100%);
+	  mask-image:radial-gradient(ellipse at center,#000 0 66%,rgba(0,0,0,.76) 84%,transparent 100%);
+	}
+	#what-remains .expo-side .expo-media:hover,
+	#what-remains .expo-side .expo-media.is-playing{
+	  opacity:.82;transform:translateY(-.12rem);
+	}
+	#what-remains .expo-media::before,
+	#what-remains .expo-media::after{
+	  content:none;
+	}
+	#what-remains .expo-video{
+	  filter:saturate(.58) contrast(1.04) brightness(.68);
 	}
 	.expo-empty{
 	  border-top:1px solid rgba(23,19,15,.11);border-bottom:1px solid rgba(23,19,15,.08);
@@ -873,8 +958,8 @@ body.gate-open{overflow:hidden;}
 }
 	.expo-empty span:first-child{color:rgba(23,19,15,.38);}
 	.expo-empty span:last-child{justify-self:end;color:rgba(23,19,15,.34);}
-		.expo-side{position:relative;z-index:1;display:grid;gap:.9rem;align-self:center;justify-items:end;}
-		.expo-side .expo-media{width:min(100%,420px);justify-self:end;opacity:.60;}
+		.expo-side{position:relative;z-index:1;display:grid;gap:clamp(.75rem,2vw,1.25rem);align-self:center;justify-items:end;}
+		.expo-side .expo-media{width:min(100%,420px);justify-self:end;opacity:.60;margin-top:clamp(.8rem,2.4vw,1.6rem);}
 	.expo-side .expo-media:hover,.expo-side .expo-media.is-playing{opacity:.92;}
 		.wr-gallery{
 		  --tear-y:42%;--tear-h:16%;--glitch-x:0px;--glitch-y:0px;
@@ -919,7 +1004,7 @@ body.gate-open{overflow:hidden;}
 	  100%{transform:translate3d(0,0,0) scale(1.001);}
 		}
 		.wr-credit{
-		  justify-self:end;margin-top:-.48rem;margin-right:.05rem;
+		  justify-self:end;margin-top:.1rem;margin-right:.05rem;margin-bottom:clamp(.45rem,1.6vw,1.1rem);
 		  font-family:var(--font-ui);font-size:.56rem;letter-spacing:.085em;text-transform:lowercase;
 		  text-decoration:none;color:rgba(237,235,226,.52);
 		  border-bottom:1px solid rgba(237,235,226,.20);padding-bottom:.12rem;transition:color .2s,border-color .2s,opacity .2s;
@@ -927,8 +1012,9 @@ body.gate-open{overflow:hidden;}
 	.wr-credit:hover{color:rgba(237,235,226,.88);border-color:rgba(237,235,226,.55);}
 		body.expo-night .top-nav{background:rgba(2,2,2,.96);border-bottom-color:rgba(237,235,226,.18);color:rgba(247,244,235,.78);}
 		body.expo-night .menu-btn{color:rgba(247,244,235,.86);}
-		body.expo-night .contact-tab{background:rgba(237,235,226,.08);border-color:rgba(237,235,226,.18);color:rgba(247,244,235,.82);box-shadow:0 18px 58px rgba(0,0,0,.26);}
-	body.expo-night .contact-icon{border-color:rgba(237,235,226,.18);}
+		body.expo-night .contact-tab{background:transparent;border-color:transparent;color:rgba(247,244,235,.82);box-shadow:none;}
+	body.expo-night .contact-icon{border-color:rgba(237,235,226,.16);color:rgba(247,244,235,.74);background:rgba(2,2,2,.18);}
+	body.expo-night .contact-icon:hover{border-color:rgba(237,235,226,.36);color:rgba(255,253,246,.96);background:rgba(237,235,226,.08);}
 	body.expo-night .cd.sm{background:rgba(237,235,226,.65);}
 	body.expo-night .cd.bg{border-color:rgba(237,235,226,.34);}
 		body.expo-night #pidx .wi-row{border-bottom-color:rgba(247,244,235,.20);}
@@ -945,7 +1031,7 @@ body.gate-open{overflow:hidden;}
 	body.expo-night .expo-work{border-color:rgba(237,235,226,.13);}
 	body.expo-night .expo-work::before{border-color:rgba(237,235,226,.08);background:radial-gradient(circle at 50% 50%,transparent 0 39%,rgba(237,235,226,.035) 40%,transparent 42%);}
 	body.expo-night .expo-work::after{background:rgba(237,235,226,.22);box-shadow:72px -34px 0 rgba(237,235,226,.09),136px 28px 0 rgba(237,235,226,.13),206px -4px 0 rgba(237,235,226,.08);}
-		body.expo-night .expo-copy p:not(.expo-place){color:rgba(247,244,235,.70);}
+		body.expo-night .expo-copy p:not(.expo-place):not(.expo-collab){color:rgba(247,244,235,.70);}
 	body.expo-night .expo-sound-plate{border-top-color:rgba(237,235,226,.16);}
 	body.expo-night .expo-sound-plate::before{
 	  background:
@@ -1033,8 +1119,8 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   .nav-section{min-width:5.6rem;max-width:26vw;}
   .nav-status{gap:.45rem;}
   .menu-btn{font-size:.62rem;letter-spacing:.16em;padding-left:.55rem;}
-  .contact-tab{left:1rem;right:1rem;bottom:.9rem;min-width:0;padding:.48rem 0;}
-  .contact-tab span{font-size:.72rem;letter-spacing:.18em;}
+  .contact-tab{left:auto;right:.9rem;bottom:.9rem;min-width:0;padding:0;}
+  .contact-tab span{display:none;}
   .contact-icon{width:30px;height:30px;}
   .hero::after{left:1.5rem;right:1.5rem;}
   .ht{padding:0 1.4rem;}
@@ -1102,11 +1188,12 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 	  .expo-work::after{left:29vw;top:4.8rem;}
 		  .expo-media{padding:.38rem;box-shadow:0 14px 42px rgba(23,19,15,.09),inset 0 0 0 1px rgba(23,19,15,.055);}
 		  .expo-side{gap:.85rem;}
-		  .expo-side .expo-media{width:min(100%,520px);justify-self:center;}
+		  .expo-side .expo-media{width:min(100%,520px);justify-self:center;margin-top:1rem;}
 			  .wr-gallery{width:min(100%,520px);aspect-ratio:16/11;}
-			  .wr-credit{font-size:.52rem;margin-top:-.42rem;margin-right:.04rem;}
+			  .wr-credit{font-size:.52rem;margin-top:.1rem;margin-right:.04rem;margin-bottom:.8rem;}
 		  .expo-title{font-size:.96rem;max-width:none;}
-		  .expo-copy p:not(.expo-place){font-size:.8rem;margin:0 0 1.25rem;}
+		  .expo-collab{font-size:.62rem;margin:.1rem 0 1.05rem;}
+		  .expo-copy p:not(.expo-place):not(.expo-collab){font-size:.8rem;margin:0 0 1.25rem;}
 		  .expo-body{margin:0 0 1.25rem;}
 		  .expo-copy .expo-body p{margin:0 0 .72rem;}
 		  .expo-sound-plate{margin-top:1.25rem;}
@@ -1327,11 +1414,13 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
     <div class="expo-copy">
       <p class="expo-place">19m, paris</p>
       <h3 class="expo-title">what remains</h3>
-      <div class="expo-body">
-        <p>What Remains est une installation née d’une réflexion sur la mémoire choisie et la transmission volontaire, prenant pour point de départ les plaques Pioneer envoyées dans l’espace par la NASA dans les années 1970. Présentées comme universelles, ces représentations traduisaient en réalité une vision partielle, normée et hiérarchisée de l’humanité.</p>
-        <p>L’œuvre propose une relecture sensible de ce geste : une nouvelle plaque, redessinée et brodée, enrichie de formes issues du corps, du geste, du numérique et de l’intime, devient support à une mémoire plurielle et mouvante. Chacun est invité à y inscrire ce qu’il ou elle souhaite transmettre, transformant l’installation en un espace partagé, vivant et évolutif.</p>
-        <p>Au cœur du projet, une œuvre sonore composée par Théo Herrerias rassemble des fragments de voix, de récits et de musiques collectés. Cette piste audio, faite d’éclats fragiles et d’histoires suspendues, invente un territoire d’accueil pour ce qui reste : les paroles incomplètes, les mémoires effacées, les voix à peine audibles qui trouvent enfin à résonner ensemble.</p>
-        <p>What Remains invente ainsi un lieu de transmission sensible et collective, où la mémoire n’est plus imposée, mais choisie, réinterprétée et partagée.</p>
+      <p class="expo-collab">installation d’éléa-jeanne schmitter · composition sonore théo herrerias</p>
+      <div class="expo-context-panel">
+        <button class="expo-toggle" type="button" aria-expanded="false" aria-controls="what-remains-context"><span>lire le contexte de l’installation</span><span class="expo-toggle-mark" aria-hidden="true">+</span></button>
+        <div class="expo-body" id="what-remains-context" aria-hidden="true">
+          <p>What Remains est une installation d’Éléa-Jeanne Schmitter née d’une réflexion sur la mémoire choisie et la transmission volontaire. En prenant pour point de départ les plaques Pioneer envoyées dans l’espace par la NASA dans les années 1970, l’œuvre propose une relecture sensible de ce geste : une nouvelle plaque, redessinée et brodée, enrichie de formes issues du corps, du geste, du numérique et de l’intime, devient le support d’une mémoire plurielle et mouvante.</p>
+          <p>Au cœur du projet, la composition sonore de Théo Herrerias rassemble des fragments de voix, de récits et de musiques collectés. Cette piste audio, faite d’éclats fragiles et d’histoires suspendues, invente un territoire d’accueil pour ce qui reste : les paroles incomplètes, les mémoires effacées, les voix à peine audibles qui trouvent enfin à résonner ensemble.</p>
+        </div>
       </div>
       <div class="expo-sound-plate" aria-hidden="false">
         <svg class="expo-sound-map" viewBox="0 0 720 186" role="slider" tabindex="0" aria-label="parcourir what remains" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
@@ -1351,25 +1440,25 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 	      <div class="wr-gallery" aria-label="images de what remains">
 	        <div class="wr-gallery-stage">
 	          <img class="wr-frame is-active" src="assets/what-remains-gallery/what-remains-01.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-02.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-03.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-04.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-05.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-06.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-07.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-08.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-09.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-10.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-11.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-12.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-13.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-14.jpg" loading="lazy" decoding="async" alt="">
-	          <img class="wr-frame" src="assets/what-remains-gallery/what-remains-15.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-02.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-03.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-04.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-05.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-06.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-07.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-08.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-09.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-10.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-11.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-12.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-13.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-14.jpg" loading="lazy" decoding="async" alt="">
+	          <img class="wr-frame" data-src="assets/what-remains-gallery/what-remains-15.jpg" loading="lazy" decoding="async" alt="">
 	        </div>
 	      </div>
 	      <a class="wr-credit" href="https://eleajeanneschmitter.format.com/" target="_blank" rel="noopener">© éléa-jeanne schmitter</a>
 	      <div class="expo-media">
-	        <video class="expo-video" preload="metadata" playsinline poster="assets/what-remains-montage-poster.jpg">
+	        <video class="expo-video" preload="none" playsinline poster="assets/what-remains-montage-poster.jpg">
 	          <source src="assets/what-remains-montage.mp4" type="video/mp4">
 	        </video>
 	        <button class="expo-video-toggle" type="button" aria-label="lancer la vidéo" aria-pressed="false"><span>lecture</span></button>
@@ -2192,12 +2281,43 @@ if(expoListen){
 	    else expoVideo.pause();
 	  });
 	}
+	const expoContext=document.querySelector('#what-remains');
+	const expoContextToggle=document.querySelector('.expo-toggle');
+	const expoContextBody=document.querySelector('#what-remains-context');
+	const expoContextPanel=document.querySelector('.expo-context-panel');
+	if(expoContext&&expoContextToggle&&expoContextBody&&expoContextPanel){
+	  let expoContextPinned=false;
+	  function setExpoContext(open){
+	    expoContext.classList.toggle('is-context-open',open);
+	    expoContextToggle.setAttribute('aria-expanded',open?'true':'false');
+	    expoContextBody.setAttribute('aria-hidden',open?'false':'true');
+	    const label=expoContextToggle.querySelector('span');
+	    if(label)label.textContent=open?'masquer le contexte de l’installation':'lire le contexte de l’installation';
+	  }
+	  expoContextToggle.addEventListener('click',()=>{
+	    expoContextPinned=!expoContextPinned;
+	    setExpoContext(expoContextPinned);
+	  });
+	  expoContextPanel.addEventListener('mouseenter',()=>{
+	    if(!expoContextPinned)setExpoContext(true);
+	  });
+	  expoContextPanel.addEventListener('mouseleave',()=>{
+	    if(!expoContextPinned)setExpoContext(false);
+	  });
+	}
 	const wrGallery=document.querySelector('.wr-gallery');
 	if(wrGallery&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
 	  const wrFrames=[...wrGallery.querySelectorAll('.wr-frame')];
 	  const wrRhythm=[860,1450,220,1180,690,2440,340,1720,980,180,1360,520,2860,760,1120,260];
 	  const wrJumps=[1,1,3,1,2,1,5,1,1,4,1,2,1,6,1,1];
 	  let wrIndex=0,wrStep=0,wrTimer=null,wrVisible=true;
+	  function wrLoad(frame){
+	    if(frame?.dataset.src&&!frame.getAttribute('src')){
+	      frame.src=frame.dataset.src;
+	    }
+	  }
+	  wrLoad(wrFrames[0]);
+	  wrLoad(wrFrames[1]);
 	  function wrSchedule(){
 	    window.clearTimeout(wrTimer);
 	    wrTimer=window.setTimeout(()=>{
@@ -2219,6 +2339,8 @@ if(expoListen){
 	    wrGallery.style.setProperty('--tear-h',`${tearH.toFixed(1)}%`);
 	    wrGallery.style.setProperty('--glitch-x',`${gx.toFixed(1)}px`);
 	    wrGallery.style.setProperty('--glitch-y',`${gy.toFixed(1)}px`);
+	    wrLoad(wrFrames[next]);
+	    wrLoad(wrFrames[(next+1)%wrFrames.length]);
 	    wrFrames.forEach((frame,i)=>{
 	      frame.classList.toggle('is-active',i===next);
 	      frame.classList.toggle('is-ghost',i===previous&&previous!==next);
