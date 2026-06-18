@@ -319,9 +319,12 @@ body.gate-open{overflow:hidden;}
   background:transparent;
   color:var(--fg);text-decoration:none;
   box-shadow:none;backdrop-filter:none;
+  transition:background .28s,border-color .28s,padding .28s,min-width .28s,box-shadow .28s;
 }
 .contact-tab span{
   display:none;
+  flex:1;font-family:var(--font-ui);font-size:.82rem;
+  letter-spacing:.22em;text-transform:lowercase;
 }
 .contact-icon{
   display:grid;place-items:center;width:34px;height:34px;
@@ -1012,8 +1015,14 @@ body.gate-open{overflow:hidden;}
 	.wr-credit:hover{color:rgba(237,235,226,.88);border-color:rgba(237,235,226,.55);}
 		body.expo-night .top-nav{background:rgba(2,2,2,.96);border-bottom-color:rgba(237,235,226,.18);color:rgba(247,244,235,.78);}
 		body.expo-night .menu-btn{color:rgba(247,244,235,.86);}
-		body.expo-night .contact-tab{background:transparent;border-color:transparent;color:rgba(247,244,235,.82);box-shadow:none;}
-	body.expo-night .contact-icon{border-color:rgba(237,235,226,.16);color:rgba(247,244,235,.74);background:rgba(2,2,2,.18);}
+		body.expo-night .contact-tab{
+		  min-width:min(92vw,270px);padding:.48rem 0 .46rem;
+		  border-top:1px solid rgba(237,235,226,.22);border-bottom:1px solid rgba(237,235,226,.12);
+		  background:linear-gradient(90deg,rgba(2,2,2,.70),rgba(2,2,2,.40));
+		  color:rgba(247,244,235,.82);box-shadow:0 14px 46px rgba(0,0,0,.22);backdrop-filter:blur(7px);
+		}
+	body.expo-night .contact-tab span{display:block;color:rgba(247,244,235,.56);}
+	body.expo-night .contact-icon{border-color:rgba(237,235,226,.18);color:rgba(247,244,235,.78);background:rgba(237,235,226,.045);}
 	body.expo-night .contact-icon:hover{border-color:rgba(237,235,226,.36);color:rgba(255,253,246,.96);background:rgba(237,235,226,.08);}
 	body.expo-night .cd.sm{background:rgba(237,235,226,.65);}
 	body.expo-night .cd.bg{border-color:rgba(237,235,226,.34);}
@@ -1122,6 +1131,8 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   .contact-tab{left:auto;right:.9rem;bottom:.9rem;min-width:0;padding:0;}
   .contact-tab span{display:none;}
   .contact-icon{width:30px;height:30px;}
+  body.expo-night .contact-tab{left:1rem;right:1rem;min-width:0;padding:.46rem 0 .44rem;}
+  body.expo-night .contact-tab span{display:block;font-size:.72rem;letter-spacing:.18em;}
   .hero::after{left:1.5rem;right:1.5rem;}
   .ht{padding:0 1.4rem;}
   .hn{font-size:.86rem;line-height:1.15;letter-spacing:.22em;}
