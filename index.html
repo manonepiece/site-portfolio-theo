@@ -591,8 +591,17 @@ body.gate-open{overflow:hidden;}
 }
 .tr-title{font-size:clamp(1.38rem,2.15vw,2.05rem);line-height:1.08;font-weight:400;transition:opacity .22s,color .22s;}
 .tr-meta{display:flex;gap:.9rem;justify-content:center;align-items:center;font-size:.82rem;letter-spacing:.075em;color:rgba(23,19,15,.50);transition:opacity .22s;}
+.tr-role{
+  justify-self:center;max-width:min(37rem,86vw);
+  font-size:.72rem;line-height:1.45;letter-spacing:.055em;
+  color:rgba(23,19,15,.44);text-transform:lowercase;opacity:0;
+  transition:opacity .24s,color .22s;
+}
 .timeline-readout:hover .tr-title{color:rgba(23,19,15,.82);}
 .timeline-readout:hover .tr-meta{opacity:.78;}
+.work-index.is-timeline:hover .tr-role,
+.work-index.is-timeline:focus-within .tr-role{opacity:.78;color:rgba(23,19,15,.52);}
+.timeline-readout:hover .tr-role{opacity:.86;color:rgba(23,19,15,.56);}
 .timeline-points{
   width:min(1040px,91vw);display:grid;grid-template-columns:repeat(9,1fr);
   align-items:start;position:relative;padding:.25rem 0 1rem;
@@ -602,16 +611,16 @@ body.gate-open{overflow:hidden;}
   background:linear-gradient(to right,transparent,rgba(23,19,15,.28),transparent);
 }
 .tl-dot{
-  position:relative;z-index:1;border:0;background:transparent;padding:0 0 4.05rem;
+  position:relative;z-index:1;border:0;background:transparent;padding:0 0 5.05rem;
   appearance:none;-webkit-appearance:none;
-  min-width:0;height:5.35rem;cursor:pointer;font-family:var(--font-ui);color:rgba(23,19,15,.48);
+  min-width:0;height:6.45rem;cursor:pointer;font-family:var(--font-ui);color:rgba(23,19,15,.48);
 }
 .tl-dot::before{
   content:'';position:absolute;left:50%;top:.54rem;width:7px;height:7px;border-radius:50%;
   background:rgba(23,19,15,.38);transform:translate(-50%,-50%);
   transition:width .25s,height .25s,background .25s,opacity .25s;
 }
-.tl-dot .tl-year,.tl-dot .tl-artist{
+.tl-dot .tl-year,.tl-dot .tl-artist,.tl-dot .tl-role{
   position:absolute;top:1.32rem;left:50%;transform:translateX(-50%);
   font-size:.74rem;letter-spacing:.06em;opacity:.52;white-space:nowrap;
   transition:opacity .22s,color .22s;
@@ -620,9 +629,19 @@ body.gate-open{overflow:hidden;}
   top:2.38rem;width:7.4rem;white-space:normal;line-height:1.12;
   font-size:.62rem;letter-spacing:.035em;color:rgba(23,19,15,.44);
 }
+.tl-dot .tl-role{
+  top:3.58rem;width:6.6rem;white-space:normal;line-height:1.14;
+  font-size:.52rem;letter-spacing:.028em;color:rgba(23,19,15,.36);
+  opacity:0;text-transform:lowercase;
+}
 .tl-dot:hover::before,.tl-dot.active::before{width:13px;height:13px;background:rgba(23,19,15,.72);}
 .tl-dot:hover .tl-year,.tl-dot.active .tl-year{opacity:.86;color:rgba(23,19,15,.68);}
 .tl-dot:hover .tl-artist,.tl-dot.active .tl-artist{opacity:.82;color:rgba(23,19,15,.58);}
+.timeline-points:hover .tl-role,
+.timeline-points:focus-within .tl-role{opacity:.42;color:rgba(23,19,15,.38);}
+.timeline-points:hover .tl-dot:hover .tl-role,
+.timeline-points:focus-within .tl-dot:focus-visible .tl-role,
+.timeline-points:hover .tl-dot.active .tl-role{opacity:.78;color:rgba(23,19,15,.50);}
 .timeline-readout:focus-visible,.tl-dot:focus-visible{outline:1px solid rgba(23,19,15,.28);outline-offset:6px;}
 .wi-row{
   position:relative;
@@ -1223,12 +1242,14 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   .timeline-readout{justify-self:center;width:min(100%,28rem);}
   .tr-title{font-size:1.2rem;}
   .tr-meta{font-size:.7rem;gap:.55rem;flex-wrap:wrap;}
-  .timeline-points{width:max(760px,100%);padding:.25rem 0 1.15rem;}
+  .tr-role{font-size:.62rem;line-height:1.38;max-width:22rem;}
+  .timeline-points{width:max(900px,100%);padding:.25rem 0 1.15rem;}
   .timeline-points::before{top:.72rem;}
-  .tl-dot{height:4.4rem;padding-bottom:3.3rem;}
+  .tl-dot{height:5.9rem;padding-bottom:4.7rem;}
   .tl-dot::before{top:.52rem;width:7px;height:7px;}
   .tl-dot .tl-year{top:1.22rem;font-size:.64rem;}
   .tl-dot .tl-artist{display:block;top:2.1rem;width:6.2rem;font-size:.54rem;line-height:1.05;}
+  .tl-dot .tl-role{display:block;top:3.08rem;width:5.7rem;font-size:.47rem;line-height:1.08;}
 	  .wi-row{grid-template-columns:1fr;gap:.24rem;}
 		  .wi-row.podcast-row{grid-template-columns:1fr;}
 		  .wi-row.has-note{grid-template-columns:1fr;}
@@ -1444,6 +1465,7 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
   <button class="timeline-readout" id="mTimelineReadout" type="button" data-id="protegee" onclick="openModal(this.dataset.id)">
     <span class="tr-title" id="mTimelineTitle">protégé.e</span>
     <span class="tr-meta"><span id="mTimelineArtist">terrenoire</span><span>·</span><span id="mTimelineYear">2025</span></span>
+    <span class="tr-role" id="mTimelineRole">co-composition · co-écriture · réalisation de l’album entier</span>
   </button>
   <div class="timeline-points" aria-label="index des réalisations">
     <button class="tl-dot" type="button" data-id="ep" onclick="openModal('ep')" onmouseenter="onIdxEnter('ep')" onmouseleave="onIdxLeave()"><span class="tl-year">2018</span><span class="tl-artist">terrenoire</span></button>
@@ -2039,15 +2061,42 @@ const timelineReadout=document.getElementById('mTimelineReadout');
 const timelineTitle=document.getElementById('mTimelineTitle');
 const timelineArtist=document.getElementById('mTimelineArtist');
 const timelineYear=document.getElementById('mTimelineYear');
+const timelineRole=document.getElementById('mTimelineRole');
 const timelineDots=[...document.querySelectorAll('.tl-dot')];
+function timelineRoleSummary(item){
+  const role=(item&&item.role)||'';
+  const parts=[];
+  if(/réalisation/i.test(role))parts.push('réalisation');
+  if(/écriture|auteur/i.test(role))parts.push('auteur');
+  if(/composition|compositeur/i.test(role))parts.push('compositeur');
+  return parts.length?parts.join(' · '):role;
+}
+function syncTimelineRoles(){
+  timelineDots.forEach(dot=>{
+    const item=ALL[dot.dataset.id];
+    if(!item)return;
+    let label=dot.querySelector('.tl-role');
+    if(!label){
+      label=document.createElement('span');
+      label.className='tl-role';
+      dot.appendChild(label);
+    }
+    const role=timelineRoleSummary(item);
+    label.textContent=role;
+    dot.setAttribute('aria-label',[item.year,item.title,item.artist,role].filter(Boolean).join(' · '));
+  });
+}
 function setTimelineActive(id){
   const item=ALL[id];if(!item||!timelineReadout)return;
   timelineReadout.dataset.id=id;
   timelineTitle.textContent=item.title||'';
   timelineArtist.textContent=item.artist||'';
   timelineYear.textContent=item.year||'';
+  if(timelineRole)timelineRole.textContent=item.role||timelineRoleSummary(item);
   timelineDots.forEach(dot=>dot.classList.toggle('active',dot.dataset.id===id));
 }
+syncTimelineRoles();
+setTimelineActive(timelineReadout?.dataset.id||'protegee');
 let mR={left:0,top:0,width:0,height:0},pR={left:0,top:0,width:0,height:0};
 function cacheRects(){mR=mSec.getBoundingClientRect();pR=pSec.getBoundingClientRect();}
 cacheRects();
