@@ -376,7 +376,7 @@ body.gate-open{overflow:hidden;}
 
 /* ── HERO ─────────────────────────────────────────────────────────── */
 .hero{height:100vh;display:grid;place-items:center;overflow:hidden;position:relative;}
-#heroCanvas{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+#heroCanvas{display:block;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 .hero::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
@@ -706,6 +706,14 @@ body.gate-open{overflow:hidden;}
   box-shadow:72px -34px 0 rgba(23,19,15,.12),136px 28px 0 rgba(23,19,15,.16),206px -4px 0 rgba(23,19,15,.10);
   pointer-events:none;
 }
+.expo-video-backdrop{
+  position:fixed;inset:0;z-index:1180;background:#020202;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .34s cubic-bezier(.23,1,.32,1),visibility .34s;
+}
+.expo-video-backdrop.is-open{opacity:1;visibility:visible;pointer-events:auto;}
+body.video-focus-open{overflow:hidden;}
+body.video-focus-open .expo-shell{content-visibility:visible;contain:none;}
 	.expo-media{
 	  position:relative;min-width:0;padding:clamp(.28rem,.55vw,.46rem);align-self:end;
   background:
@@ -713,11 +721,20 @@ body.gate-open{overflow:hidden;}
     linear-gradient(135deg,rgba(189,199,189,.24),rgba(237,235,226,.10));
   box-shadow:0 16px 46px rgba(23,19,15,.065),inset 0 0 0 1px rgba(23,19,15,.045);
 	  opacity:.66;
-	  transition:opacity .32s,transform .32s;
+	  cursor:pointer;transition:opacity .32s,transform .32s;
 	}
 .expo-media:hover,.expo-media.is-playing{
   opacity:.98;transform:translateY(-.18rem);
 }
+.expo-media.is-focused{
+  position:fixed!important;left:50%!important;top:50%!important;
+  width:min(92vw,155vh,1180px)!important;margin:0!important;padding:0!important;
+  z-index:1200;opacity:1!important;transform:translate(-50%,-50%)!important;
+  background:#020202!important;
+  box-shadow:0 0 0 1px rgba(237,235,226,.13),0 34px 120px rgba(0,0,0,.72)!important;
+  -webkit-mask-image:none!important;mask-image:none!important;
+}
+.expo-media.is-focused::before,.expo-media.is-focused::after{content:none!important;}
 .expo-media::before{
   content:'';position:absolute;inset:-.9rem -.7rem;z-index:-1;pointer-events:none;
   background:radial-gradient(ellipse 72% 62% at 48% 54%,rgba(189,199,189,.18),transparent 72%);
@@ -733,6 +750,9 @@ body.gate-open{overflow:hidden;}
   border:0;background:rgba(23,19,15,.08);
   filter:saturate(.76) contrast(.95) brightness(.97);
 }
+.expo-media.is-focused .expo-video{
+  height:auto;max-height:calc(100vh - 5rem);object-fit:contain;filter:none!important;background:#020202;
+}
 .expo-video-toggle{
   position:absolute;left:clamp(1rem,1.45vw,1.35rem);bottom:clamp(1rem,1.45vw,1.35rem);
   z-index:4;border:0;background:transparent;color:rgba(237,235,226,.72);
@@ -743,6 +763,18 @@ body.gate-open{overflow:hidden;}
 .expo-video-toggle:hover,.expo-media:hover .expo-video-toggle{opacity:.82;color:rgba(237,235,226,.92);}
 .expo-media.is-playing .expo-video-toggle{opacity:.20;}
 .expo-media.is-playing:hover .expo-video-toggle{opacity:.62;}
+.expo-media.is-focused .expo-video-toggle{opacity:.72;color:rgba(237,235,226,.90);}
+.expo-video-close{
+  display:none;position:absolute;right:clamp(.8rem,1.3vw,1.2rem);top:clamp(.75rem,1.2vw,1rem);
+  z-index:5;width:36px;height:36px;border:1px solid rgba(237,235,226,.24);background:rgba(2,2,2,.32);
+  color:rgba(237,235,226,.84);place-items:center;cursor:pointer;
+  font-family:var(--font-ui);font-size:1.05rem;line-height:1;transition:color .2s,border-color .2s,background .2s;
+}
+.expo-video-close:hover{color:rgba(255,253,246,.98);border-color:rgba(237,235,226,.48);background:rgba(237,235,226,.08);}
+.expo-media.is-focused .expo-video-close{
+  display:grid;position:fixed;right:clamp(1rem,2.4vw,2rem);top:clamp(1rem,2.4vw,1.6rem);
+  z-index:1210;background:rgba(237,235,226,.08);border-color:rgba(237,235,226,.38);
+}
 .expo-video-progress{
   position:absolute;left:clamp(1rem,1.45vw,1.35rem);right:clamp(1rem,1.45vw,1.35rem);
   bottom:clamp(.72rem,1vw,.92rem);z-index:4;height:1px;background:rgba(237,235,226,.20);
@@ -1231,6 +1263,7 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 <div class="site-curtain" id="siteCurtain" aria-hidden="true"></div>
 <div class="site-darkwash" id="siteDarkwash" aria-hidden="true"></div>
 <div class="name-glow" id="nameGlow" aria-hidden="true"></div>
+<div class="expo-video-backdrop" id="expoVideoBackdrop" aria-hidden="true"></div>
 <audio id="openingPortalAudioTag" src="audio/Ouverture%20portail.mp3" preload="auto" autoplay aria-hidden="true"></audio>
 <section class="intro-gate" id="introGate" aria-label="Entrée du portfolio">
   <div class="intro-meta"><span>théo herrerias</span><span>paris · audio</span></div>
@@ -1476,11 +1509,12 @@ footer span{font-family:var(--font-ui);font-size:.7rem;letter-spacing:.08em;colo
 	        </div>
 	      </div>
 	      <a class="wr-credit" href="https://eleajeanneschmitter.format.com/" target="_blank" rel="noopener">© éléa-jeanne schmitter</a>
-	      <div class="expo-media">
+	      <div class="expo-media" tabindex="0" aria-label="agrandir la vidéo what remains" aria-expanded="false">
 	        <video class="expo-video" preload="none" playsinline poster="assets/what-remains-montage-poster.jpg">
 	          <source src="assets/what-remains-montage.mp4" type="video/mp4">
 	        </video>
 	        <button class="expo-video-toggle" type="button" aria-label="lancer la vidéo" aria-pressed="false"><span>lecture</span></button>
+	        <button class="expo-video-close" type="button" aria-label="fermer la vidéo">×</button>
 	        <div class="expo-video-progress" aria-hidden="true"><span></span></div>
 	      </div>
 	    </div>
@@ -2136,6 +2170,8 @@ if(expoListen){
   const expoVideoToggle=document.querySelector('.expo-video-toggle');
   const expoVideoToggleText=expoVideoToggle?.querySelector('span');
   const expoVideoProgress=document.querySelector('.expo-video-progress span');
+  const expoVideoBackdrop=document.getElementById('expoVideoBackdrop');
+  const expoVideoClose=document.querySelector('.expo-video-close');
   expoAudio.preload='metadata';
   expoAudio.volume=.86;
   expoAudio.load();
@@ -2199,6 +2235,17 @@ if(expoListen){
     expoVideoToggle?.setAttribute('aria-pressed',isPlaying?'true':'false');
     expoVideoToggle?.setAttribute('aria-label',isPlaying?'mettre la vidéo en pause':'lancer la vidéo');
     if(expoVideoToggleText)expoVideoToggleText.textContent=isPlaying?'pause':'lecture';
+  }
+  function setExpoVideoFocus(open,{pause=false}={}){
+    if(!expoVideoShell)return;
+    if(!open&&pause&&expoVideo&&!expoVideo.paused)expoVideo.pause();
+    expoVideoShell.classList.toggle('is-focused',open);
+    expoVideoBackdrop?.classList.toggle('is-open',open);
+    expoVideoBackdrop?.setAttribute('aria-hidden',open?'false':'true');
+    document.body.classList.toggle('video-focus-open',open);
+    expoVideoShell.setAttribute('aria-expanded',open?'true':'false');
+    expoVideoShell.setAttribute('aria-label',open?'vidéo what remains agrandie':'agrandir la vidéo what remains');
+    if(open)expoVideoShell.focus({preventScroll:true});
   }
   function setExpoPlaying(isPlaying){
     expoListen.classList.toggle('is-playing',isPlaying);
@@ -2287,17 +2334,46 @@ if(expoListen){
     if(!expoVideoProgress||!expoVideo.duration)return;
     expoVideoProgress.style.width=`${Math.min(100,(expoVideo.currentTime/expoVideo.duration)*100)}%`;
   });
+  expoVideoBackdrop?.addEventListener('click',()=>setExpoVideoFocus(false,{pause:true}));
+  expoVideoClose?.addEventListener('click',e=>{
+    e.stopPropagation();
+    setExpoVideoFocus(false,{pause:true});
+  });
   expoVideoToggle?.addEventListener('click',e=>{
     e.stopPropagation();
     if(!expoVideo)return;
+    if(!expoVideoShell?.classList.contains('is-focused'))setExpoVideoFocus(true);
     if(expoVideo.paused)expoVideo.play().catch(()=>{});
     else expoVideo.pause();
   });
 	  expoVideoShell?.addEventListener('click',e=>{
-	    if(e.target.closest?.('.expo-video-toggle'))return;
+	    if(e.target.closest?.('.expo-video-toggle,.expo-video-close'))return;
 	    if(!expoVideo)return;
+	    const wasFocused=expoVideoShell.classList.contains('is-focused');
+	    if(!wasFocused){
+	      setExpoVideoFocus(true);
+	      if(expoVideo.paused)expoVideo.play().catch(()=>{});
+	      return;
+	    }
 	    if(expoVideo.paused)expoVideo.play().catch(()=>{});
 	    else expoVideo.pause();
+	  });
+	  expoVideoShell?.addEventListener('keydown',e=>{
+	    if(e.key==='Escape'&&expoVideoShell.classList.contains('is-focused')){
+	      e.preventDefault();
+	      setExpoVideoFocus(false,{pause:true});
+	    }else if(e.key==='Enter'||e.key===' '){
+	      e.preventDefault();
+	      if(!expoVideoShell.classList.contains('is-focused'))setExpoVideoFocus(true);
+	      if(!expoVideo)return;
+	      if(expoVideo.paused)expoVideo.play().catch(()=>{});
+	      else expoVideo.pause();
+	    }
+	  });
+	  document.addEventListener('keydown',e=>{
+	    if(e.key==='Escape'&&expoVideoShell?.classList.contains('is-focused')){
+	      setExpoVideoFocus(false,{pause:true});
+	    }
 	  });
 	}
 	const expoContext=document.querySelector('#what-remains');
